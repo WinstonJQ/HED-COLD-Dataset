@@ -62,6 +62,10 @@ id,split,topic,label,TEXT
 
 ### Traceability Files (traceability/)
 
+The three files in this folder are directly sampled from the original COLD dataset. 
+Each entry corresponds one-to-one with a sample in HED-COLD (by `new_id`), 
+allowing users to align the perturbed text with its original version for training, comparison, or robustness analysis.
+
 CSV format with additional fields for tracing back to original COLD dataset:
 
 - `new_id`: New ID in HED-COLD (1-10000)
@@ -71,44 +75,8 @@ CSV format with additional fields for tracing back to original COLD dataset:
 - `label`: Label
 - `TEXT`: Text content (original text before perturbation)
 
-## 🚀 Quick Start
+Each `new_id` matches exactly one sample in `dataset/`, ensuring strict one-to-one alignment between original and perturbed data.
 
-### Loading the Dataset
-
-```python
-import csv
-
-def load_dataset(filepath):
-    with open(filepath, 'r', encoding='utf-8') as f:
-        reader = csv.DictReader(f)
-        return list(reader)
-
-# Load dataset
-train = load_dataset('dataset/train.csv')
-dev = load_dataset('dataset/dev.csv')
-test = load_dataset('dataset/test.csv')
-
-print(f"Training set: {len(train)} samples")
-print(f"Development set: {len(dev)} samples")
-print(f"Test set: {len(test)} samples")
-```
-
-### Comparing Original vs Perturbed Text
-
-```python
-import csv
-
-# Load dataset and traceability files
-test = list(csv.DictReader(open('dataset/test.csv', 'r', encoding='utf-8')))
-sampled_test = list(csv.DictReader(open('traceability/sampled_test_data.csv', 'r', encoding='utf-8')))
-
-# Find perturbed samples
-for new_row, old_row in zip(test[:10], sampled_test[:10]):
-    if new_row['TEXT'] != old_row['TEXT']:
-        print(f"\nID: {new_row['id']}")
-        print(f"Original: {old_row['TEXT']}")
-        print(f"Perturbed: {new_row['TEXT']}")
-```
 
 ## 📈 Perturbation Examples
 
@@ -142,39 +110,40 @@ Perturbed: 终于在知乎看到我大四穿的香肠了！
 If you use this dataset, please cite:
 
 ```bibtex
-@dataset{hedcold2026,
-  title={HED-COLD: Homophonic and Syntactic Enhanced Chinese Offensive Language Dataset},
-  author={[Your Name]},
-  year={2026},
-  note={Based on COLD dataset with homophonic perturbation}
+@inproceedings{HED-COLD,
+  title = "Enhancing Chinese Offensive Language Detection with Homophonic Perturbation",
+  author = "Wu, Junqi and Ji, Shujie and Zhong, Kang and Peng, Huiling and Zhendongxiao and Liu, Xiongding and Wei, Wu",
+  booktitle = "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing",
+  month = nov,
+  year = "2025",
+  address = "Suzhou, China",
+  publisher = "Association for Computational Linguistics",
+  url = "https://aclanthology.org/2025.emnlp-main.1154/",
+  doi = "10.18653/v1/2025.emnlp-main.1154",
+  pages = "22660--22675"
 }
 ```
 
 Original COLD dataset:
 ```bibtex
-@inproceedings{cold2023,
-  title={COLD: A Benchmark for Chinese Offensive Language Detection},
-  author={...},
-  booktitle={...},
-  year={2023}
+@article{deng2022cold,
+  title="Cold: A benchmark for chinese offensive language detection",
+  author= "Deng, Jiawen and Zhou, Jingyan and Sun, Hao and Mi, Fei and Huang, Minlie",
+  booktitle = "Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing",
+  month = dec,
+  year = "2022",
+  address = "Abu Dhabi, United Arab Emirates",
+  publisher = "Association for Computational Linguistics",
+  url = "https://aclanthology.org/2022.emnlp-main.796",
+  pages = "11580--11599"
 }
 ```
 
-## 📧 Contact
-
-For questions or issues, please contact:
-- GitHub Issues: [repository URL]
-- Email: [your email]
-
 ## 🙏 Acknowledgments
 
-This dataset is based on the open-source COLD (Chinese Offensive Language Dataset). We thank the original authors for their contribution.
+This dataset is built upon the open-source [COLD (Chinese Offensive Language Dataset)](https://github.com/thu-coai/COLDataset).  
+We sincerely thank the original authors for making the dataset publicly available and for their valuable contribution to the research community.
 
 ## 📄 License
 
 This dataset is released under the MIT License.
-
----
-
-**Dataset Version**: v1.0
-**Release Date**: 2026-03-02
