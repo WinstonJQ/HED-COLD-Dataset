@@ -1,5 +1,7 @@
 # HED-COLD Dataset
 
+This dataset is associated with our EMNLP 2025 main conference paper *Enhancing Chinese Offensive Language Detection with Homophonic Perturbation*: https://aclanthology.org/2025.emnlp-main.1154/
+
 **HED-COLD** (Homophonic and Syntactic Enhanced Chinese Offensive Language Dataset) is a Chinese offensive language detection dataset enhanced with homophonic perturbations and syntactic rewriting, based on the original COLD dataset.
 
 ## 📊 Dataset Statistics
